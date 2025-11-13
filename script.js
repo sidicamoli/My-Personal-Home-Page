@@ -1,165 +1,414 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Language Switcher
-    const titleEn = document.getElementById('title-en');
-    const titleAr = document.getElementById('title-ar');
-    const contentEn = document.getElementById('content-en');
-    const contentAr = document.getElementById('content-ar');
-    const languageButtons = document.querySelectorAll('.language-switch button');
+// ==========================================
+// PROFESSIONAL PORTFOLIO JAVASCRIPT
+// ==========================================
 
-    function switchLanguage(lang) {
-        if (lang === 'en') {
-            titleEn.classList.remove('hidden');
-            titleAr.classList.add('hidden');
-            contentEn.classList.remove('hidden');
-            contentAr.classList.add('hidden');
-            document.body.dir = 'ltr';
-            localStorage.setItem('language', 'en');
-        } else {
-            titleEn.classList.add('hidden');
-            titleAr.classList.remove('hidden');
-            contentEn.classList.add('hidden');
-            contentAr.classList.remove('hidden');
-            document.body.dir = 'rtl';
-            localStorage.setItem('language', 'ar');
-        }
-    }
-
-    // Set initial language based on localStorage or default to English
-    const savedLanguage = localStorage.getItem('language') || 'en';
-    switchLanguage(savedLanguage);
-
-    languageButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            switchLanguage(button.textContent.toLowerCase().includes('english') ? 'en' : 'ar');
-        });
-    });
-
-    // Dark Mode Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Function to set the theme
-    function setTheme(isDarkMode) {
-        if (isDarkMode) {
-            body.classList.add('dark-mode');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            themeToggle.title = 'Toggle Light Mode';
-        } else {
-            body.classList.remove('dark-mode');
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            themeToggle.title = 'Toggle Dark Mode';
-        }
-        localStorage.setItem('darkMode', isDarkMode);
-    }
-
-    // Check for saved theme preference
-    const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode === 'true') {
-        setTheme(true);
-    } else {
-        setTheme(false); // Default to light mode
-    }
-
-    // Toggle theme on button click
-    themeToggle.addEventListener('click', () => {
-        setTheme(!body.classList.contains('dark-mode'));
-    });
-
-    // Smooth Scrolling for Navigation Links
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-
-            // Remove active class from all and add to clicked
-            document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // Highlight active nav link on scroll
-    const sections = document.querySelectorAll('main section');
-    const navLinks = document.querySelectorAll('nav ul li a');
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.3
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${entry.target.id}` ||
-                        (entry.target.id.includes('-ar') && link.getAttribute('href') === `#${entry.target.id.replace('-ar', '')}`)) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-    // Animate skill bars
-    const skillLevels = document.querySelectorAll('.skill-level');
-    const animateSkills = () => {
-        skillLevels.forEach(skillBar => {
-            const level = parseInt(skillBar.dataset.level);
-            let percent = 0;
-            switch (level) {
-                case 5: percent = 100; break;
-                case 4: percent = 80; break;
-                case 3: percent = 60; break;
-                case 2: percent = 40; break;
-                case 1: percent = 20; break;
-                default: percent = 0;
-            }
-            skillBar.style.setProperty('--skill-percent', `${percent}%`);
-        });
-    };
-
-    // Trigger skill animation when skills section is in view
-    const skillsSection = document.getElementById('skills') || document.getElementById('skills-ar');
-    if (skillsSection) {
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateSkills();
-                    skillsObserver.unobserve(skillsSection); // Stop observing once animated
-                }
-            });
-        }, { threshold: 0.5 });
-        skillsObserver.observe(skillsSection);
-    }
-
-
-    // Fade-in animation for cards on scroll
-    const cards = document.querySelectorAll('.card');
-    const cardObserverOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const cardObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, cardObserverOptions);
-
-    cards.forEach(card => {
-        card.classList.add('fade-in'); // Add initial hidden state
-        cardObserver.observe(card);
-    });
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize all features
+  initializeTheme();
+  initializeLanguage();
+  setupScrollAnimations();
+  setupNavigationHighlight();
+  setupSmoothScroll();
+  setupScrollEffects();
 });
+
+// ==========================================
+// THEME MANAGEMENT
+// ==========================================
+
+function toggleTheme() {
+  const body = document.body;
+  const isDarkMode = body.classList.toggle('dark-mode');
+  
+  // Update button icon
+  const themeBtn = document.querySelector('.theme-btn i');
+  if (themeBtn) {
+    themeBtn.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+  }
+  
+  // Save to localStorage
+  localStorage.setItem('darkMode', isDarkMode);
+}
+
+function initializeTheme() {
+  // Check saved preference
+  const savedTheme = localStorage.getItem('darkMode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  // Apply theme
+  if (savedTheme === 'true' || (savedTheme === null && prefersDark)) {
+    document.body.classList.add('dark-mode');
+    const themeBtn = document.querySelector('.theme-btn i');
+    if (themeBtn) {
+      themeBtn.className = 'fas fa-sun';
+    }
+  }
+}
+
+// ==========================================
+// LANGUAGE SWITCHER
+// ==========================================
+
+function switchLang(lang) {
+  const contentEn = document.getElementById('content-en');
+  const contentAr = document.getElementById('content-ar');
+  const html = document.documentElement;
+  
+  if (lang === 'ar') {
+    // Show Arabic content
+    if (contentEn) contentEn.classList.add('hidden');
+    if (contentAr) contentAr.classList.remove('hidden');
+    html.setAttribute('dir', 'rtl');
+    html.setAttribute('lang', 'ar');
+  } else {
+    // Show English content
+    if (contentEn) contentEn.classList.remove('hidden');
+    if (contentAr) contentAr.classList.add('hidden');
+    html.setAttribute('dir', 'ltr');
+    html.setAttribute('lang', 'en');
+  }
+  
+  // Save preference
+  localStorage.setItem('language', lang);
+  
+  // Re-initialize scroll animations for newly visible content
+  setTimeout(setupScrollAnimations, 100);
+}
+
+function initializeLanguage() {
+  const savedLang = localStorage.getItem('language') || 'en';
+  switchLang(savedLang);
+}
+
+// ==========================================
+// SCROLL ANIMATIONS
+// ==========================================
+
+function setupScrollAnimations() {
+  const sections = document.querySelectorAll('.section');
+  
+  // Clear previous observers
+  if (window.sectionObserver) {
+    sections.forEach(section => window.sectionObserver.unobserve(section));
+  }
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  window.sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+  
+  sections.forEach(section => {
+    window.sectionObserver.observe(section);
+  });
+}
+
+// ==========================================
+// NAVIGATION HIGHLIGHT
+// ==========================================
+
+function setupNavigationHighlight() {
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.section');
+  
+  if (sections.length === 0) return;
+  
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '-20% 0px -70% 0px'
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        // Remove active class from all links
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        // Add active class to current link
+        const cleanId = id.replace('-ar', '');
+        const activeLink = document.querySelector(`.nav-link[href="#${cleanId}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+    });
+  }, observerOptions);
+  
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+}
+
+// ==========================================
+// SMOOTH SCROLL
+// ==========================================
+
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // Initialize theme from saved preference
+  initializeTheme();
+  
+  // Initialize language from saved preference
+  initializeLanguage();
+  
+  // Setup scroll animations
+  setupScrollAnimations();
+  
+  // Setup navigation highlighting
+  setupNavigationHighlight();
+  
+  // Animate skill bars when visible
+  animateSkillBars();
+  
+  // Smooth scroll for navigation links
+  setupSmoothScroll();
+});
+
+// Theme Toggle Function
+function toggleTheme() {
+  const body = document.body;
+  const isDarkMode = body.classList.toggle('dark-mode');
+  
+  // Update theme button icon
+  const themeBtn = document.querySelector('.theme-btn i');
+  if (isDarkMode) {
+    themeBtn.className = 'fas fa-sun';
+  } else {
+    themeBtn.className = 'fas fa-moon';
+  }
+  
+  // Save preference
+  localStorage.setItem('darkMode', isDarkMode);
+}
+
+// Initialize Theme
+function initializeTheme() {
+  const savedTheme = localStorage.getItem('darkMode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'true' || (savedTheme === null && prefersDark)) {
+    document.body.classList.add('dark-mode');
+    const themeBtn = document.querySelector('.theme-btn i');
+    if (themeBtn) {
+      themeBtn.className = 'fas fa-sun';
+    }
+  }
+}
+
+// Language Switcher
+function switchLang(lang) {
+  const contentEn = document.getElementById('content-en');
+  const contentAr = document.getElementById('content-ar');
+  const navEn = document.getElementById('nav-en');
+  const navAr = document.getElementById('nav-ar');
+  const html = document.documentElement;
+  
+  if (lang === 'ar') {
+    contentEn.classList.add('hidden');
+    contentAr.classList.remove('hidden');
+    navEn.classList.add('hidden');
+    navAr.classList.remove('hidden');
+    html.setAttribute('dir', 'rtl');
+    html.setAttribute('lang', 'ar');
+  } else {
+    contentEn.classList.remove('hidden');
+    contentAr.classList.add('hidden');
+    navEn.classList.remove('hidden');
+    navAr.classList.add('hidden');
+    html.setAttribute('dir', 'ltr');
+    html.setAttribute('lang', 'en');
+  }
+  
+  // Save preference
+  localStorage.setItem('language', lang);
+  
+  // Re-initialize navigation highlighting for new language
+  setupNavigationHighlight();
+}
+
+// Initialize Language
+function initializeLanguage() {
+  const savedLang = localStorage.getItem('language') || 'en';
+  switchLang(savedLang);
+}
+
+// Setup Scroll Animations
+function setupScrollAnimations() {
+  const sections = document.querySelectorAll('.section');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+  
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+}
+
+// Setup Navigation Highlight
+function setupNavigationHighlight() {
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.section');
+  
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '-20% 0px -70% 0px'
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        // Remove active class from all links
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        // Add active class to current link
+        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+    });
+  }, observerOptions);
+  
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+}
+
+// Animate Skill Bars
+function animateSkillBars() {
+  const skillFills = document.querySelectorAll('.skill-fill');
+  
+  const observerOptions = {
+    threshold: 0.5
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        const width = fill.getAttribute('data-width');
+        
+        // Animate width
+        setTimeout(() => {
+          fill.style.width = width + '%';
+        }, 100);
+        
+        // Stop observing after animation
+        observer.unobserve(fill);
+      }
+    });
+  }, observerOptions);
+  
+  skillFills.forEach(fill => {
+    observer.observe(fill);
+  });
+}
+
+// Setup Smooth Scroll
+function setupSmoothScroll() {
+  const navLinks = document.querySelectorAll('.nav a');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        const headerOffset = 100;
+        const elementPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+}
+
+// Add scroll-to-top functionality (optional)
+window.addEventListener('scroll', function() {
+  const header = document.querySelector('.header');
+  
+  if (window.scrollY > 100) {
+    header.style.boxShadow = '0 4px 12px var(--shadow)';
+  } else {
+    header.style.boxShadow = '0 1px 3px var(--shadow)';
+  }
+});
+// ==========================================
+// SCROLL EFFECTS
+// ==========================================
+
+function setupScrollEffects() {
+  let lastScroll = 0;
+  const header = document.querySelector('.header');
+  
+  window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset;
+    
+    // Add shadow on scroll
+    if (currentScroll > 50) {
+      header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+    } else {
+      header.style.boxShadow = 'none';
+    }
+    
+    lastScroll = currentScroll;
+  });
+}
+
+// ==========================================
+// UTILITY FUNCTIONS
+// ==========================================
+
+// Debounce function for performance
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Add resize listener with debounce
+window.addEventListener('resize', debounce(function() {
+  setupScrollAnimations();
+}, 250));
+
+// Expose functions to global scope for onclick handlers
+window.toggleTheme = toggleTheme;
+window.switchLang = switchLang;

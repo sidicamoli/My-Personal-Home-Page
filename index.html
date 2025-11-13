@@ -3,360 +3,905 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohamed Ibrahim Mohamed - Personal Home Page</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <title>Mohamed Ibrahim Mohamed - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="c-site-header">
+  <!-- Header -->
+  <header class="header">
     <div class="header-content">
-      <h1 id="title-en">Welcome to My Personal Home Page <i class="fas fa-smile-beam"></i></h1>
-      <h1 id="title-ar" class="hidden">مرحبًا بكم في صفحتي الشخصية <i class="fas fa-smile-beam"></i></h1>
-
-      <div class="header-controls">
-        <div class="language-switch">
-          <button onclick="switchLanguage('en')">English</button>
-          <button onclick="switchLanguage('ar')">العربية</button>
-        </div>
-        <button id="theme-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+      <div class="logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Mohamed Ibrahim Mohamed</span>
       </div>
+      <div class="controls">
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn" onclick="switchLang('ar')">ع</button>
+        <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      <nav class="nav">
+        <ul id="nav-en">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#qualifications" class="nav-link">Qualifications</a></li>
+          <li><a href="#development" class="nav-link">Development</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#writing" class="nav-link">Writing</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <ul id="nav-ar" class="hidden">
+          <li><a href="#about-ar" class="nav-link">نبذة</a></li>
+          <li><a href="#experience-ar" class="nav-link">الخبرة</a></li>
+          <li><a href="#education-ar" class="nav-link">التعليم</a></li>
+          <li><a href="#qualifications-ar" class="nav-link">المؤهلات</a></li>
+          <li><a href="#development-ar" class="nav-link">التطوير</a></li>
+          <li><a href="#skills-ar" class="nav-link">المهارات</a></li>
+          <li><a href="#writing-ar" class="nav-link">المنشورات</a></li>
+          <li><a href="#contact-ar" class="nav-link">التواصل</a></li>
+        </ul>
+      </nav>
     </div>
-
-    <nav aria-label="Main Site Links">
-      <ul>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#work-experience">Work Experience</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#professional-development">Professional Development</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#languages">Languages</a></li>
-        <li><a href="#writing">My Writing</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#my-photo">My Photo</a></li>
-        <li><a href="#career-goal">Career Goal</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <!-- English Content -->
-  <main id="content-en">
-    <section id="about" class="card">
-      <h2>Hello, I'm Mohamed Ibrahim Mohamed "Mansour" 😊</h2>
-      <p>I am a <strong>dynamic and experienced professional with fifteen years of experience in radio broadcasting, editing, and translation</strong>. As a PhD candidate in education, I am known for authoring a groundbreaking <strong>master's thesis that was praised and published by the Egyptian Ministry of Culture and on prestigious platforms</strong>. I previously served as <strong>President of the Djibouti Students Union and the Afar Students Association in Cairo</strong>, where I contributed to supporting and empowering student initiatives and promoting their role in society.</p>
-      <p>I am a dedicated learner who is currently developing my skills in <strong>web development through CodeYourFuture</strong>, where I work with <strong>HTML, CSS, JavaScript, Git, and GitHub</strong>. In addition, I engage in <strong>pair programming, debugging, and the utilization of project boards</strong> for the collaborative development and oversight of software.</p>
-      <p>My academic background encompasses a range of disciplines, including <strong>broadcasting, editing, translation, education, and scientific research</strong>. I subscribe to the <strong>philosophy of lifelong learning</strong>, which I consider to be a catalyst for both personal and professional growth.</p>
-    </section>
-
-    <section id="work-experience" class="card">
-      <h2>Work History</h2>
-      <div class="job-entry">
-        <h3>Broadcasting Specialist <span class="job-dates">2009-03 - 2024-02</span></h3>
-        <p class="organization">Egyptian Radio and Television Union (ERTU)</p>
-        <ul>
-          <li>Innovated and narrated compelling broadcast narratives that significantly bolstered listener engagement.</li>
-          <li>Spearheaded translation and editing process, enhancing richness and diversity of the content.</li>
-          <li>Mentored and onboarded new team members, elevating departmental capabilities and workflow efficiency.</li>
-          <li>Managed budgets effectively, consistently staying within financial constraints while maximizing resource allocation for optimal results.</li>
-          <li>Built and managed relationships with key clients and partners to drive growth.</li>
-        </ul>
-      </div>
-      <div class="job-entry">
-        <h3>Human Resources Manager <span class="job-dates">2012-09 - 2015-11</span></h3>
-        <p class="organization">Atfalna Academy</p>
-        <ul>
-          <li>Orchestrated internal communications strategies that optimized organizational effectiveness.</li>
-          <li>Initiated and directed employee engagement programs that boosted morale and productivity.</li>
-          <li>Conducted thorough internal investigations, addressing employee concerns with fairness and transparency.</li>
-          <li>Collaborated with executive leadership to align HR initiatives with overall business goals and objectives.</li>
-          <li>Managed employee relations issues professionally, resolving conflicts efficiently while maintaining confidentiality at all times.</li>
-        </ul>
-      </div>
-      <div class="job-entry">
-        <h3>Arabic Language Teacher <span class="job-dates">2003-01 - 2005-06</span></h3>
-        <p class="organization">Abu Bakr Al-Siddeeq Elementary School</p>
-        <ul>
-          <li>Cultivated a versatile teaching environment, adapting to varied learning styles and educational needs.</li>
-          <li>Implemented classroom management techniques that fostered a positive and inclusive learning environment for all students.</li>
-          <li>Promoted a love of reading among students by creating engaging book displays in the classroom library, hosting book talks, and offering personalized recommendations based on individual interests.</li>
-          <li>Built relationships and communicated with parents to provide best learning environment for children.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="education" class="card">
-      <h2>Education</h2>
-      <div class="education-entry">
-        <h3>Ph.D. in Education: Preparatory Year <span class="education-dates">2021-05</span></h3>
-        <p class="institution">Faculty of Graduate Studies for Education, Cairo University - Cairo, Egypt</p>
-      </div>
-      <div class="education-entry">
-        <h3>Master of Education: Educational Sociology <span class="education-dates">2020-04</span></h3>
-        <p class="institution">Cairo University - Cairo, Egypt</p>
-        <p>Authored a pioneering thesis on Citizenship Education in African Societies, which was published and recognized by institutions such as Stanford University and Yale Library.</p>
-      </div>
-      <div class="education-entry">
-        <h3>Special & General Diplomas in Education</h3>
-        <p class="institution">Institute of Educational Studies, Cairo University - Cairo, Egypt</p>
-      </div>
-      <div class="education-entry">
-        <h3>Bachelor of Arts: Arabic Language Literature <span class="education-dates">2010-05</span></h3>
-        <p class="institution">Faculty of Arts, Cairo University - Cairo, Egypt</p>
-      </div>
-    </section>
-
-    <section id="professional-development" class="card">
-      <h2>Professional Development</h2>
-      <div class="pd-category">
-        <h3>💻 Technical Training (CodeYourFuture)</h3>
-        <ul>
-          <li>Build simple working software using tickets and project boards.</li>
-          <li>Code in pair programming sessions with peers and mentors.</li>
-          <li>Work remotely in self-directed sprints, and also collaborate in hybrid settings.</li>
-          <li>Develop skills such as time management, professional communication, and problem-solving.</li>
-        </ul>
-      </div>
-      <div class="pd-category">
-        <h3>Other Professional Development</h3>
-        <ul>
-          <li><strong>Economic Analysis:</strong> Acquired insights into international economics, enabling application to educational contexts.</li>
-          <li><strong>Interpersonal Skills:</strong> Mastered communication strategies that foster self-confidence and character building.</li>
-          <li><strong>Technical Certifications:</strong> Achieved proficiency in ICDL and advanced English language applications.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="skills" class="card">
-      <h2>🛠️ Skills & Knowledge</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Web Development</h3>
-          <ul>
-            <li><strong>HTML, CSS, JavaScript</strong> – core web development skills.</li>
-            <li><strong>Git & GitHub</strong> – version control and collaborative coding.</li>
-            <li><strong>Debugging & Code Review</strong> – writing and improving clean, working code.</li>
-            <li><strong>Pair Programming</strong> – building solutions through collaboration.</li>
-            <li><strong>Kanban & Project Boards</strong> – managing tasks and workflows effectively.</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Other Skills</h3>
-          <ul>
-            <li>Teaching & Mentoring <div class="skill-level" data-level="5"></div></li>
-            <li>Staff Management & Leadership <div class="skill-level" data-level="5"></div></li>
-            <li>Strategic Communication <div class="skill-level" data-level="4"></div></li>
-            <li>Critical & Analytical Thinking <div class="skill-level" data-level="4"></div></li>
-            <li>Research & Analysis <div class="skill-level" data-level="5"></div></li>
-            <li>Resource Allocation <div class="skill-level" data-level="4"></div></li>
-            <li>Emergency Response <div class="skill-level" data-level="3"></div></li>
-          </ul>
+  <!-- ENGLISH CONTENT -->
+  <div id="content-en">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Mohamed Ibrahim Mohamed</h1>
+        <p class="hero-subtitle">PhD Candidate in Education | Researcher | Broadcaster | Web Developer</p>
+        <div class="hero-icons">
+          <span title="Research & Education"><i class="fas fa-graduation-cap"></i></span>
+          <span title="Broadcasting"><i class="fas fa-microphone-alt"></i></span>
+          <span title="Web Development"><i class="fas fa-laptop-code"></i></span>
+          <span title="Leadership"><i class="fas fa-users"></i></span>
+          <span title="Multilingual"><i class="fas fa-globe"></i></span>
         </div>
       </div>
     </section>
 
-    <section id="languages" class="card">
-      <h2>Languages</h2>
-      <ul>
-        <li>Afar: Native Proficiency <div class="skill-level" data-level="5"></div></li>
-        <li>Arabic: Native or Bilingual Proficiency <div class="skill-level" data-level="5"></div></li>
-        <li>English: Full Professional Proficiency <div class="skill-level" data-level="4"></div></li>
-        <li>Somali: Full Professional Proficiency <div class="skill-level" data-level="4"></div></li>
-        <li>French: Limited Working Proficiency <div class="skill-level" data-level="2"></div></li>
-      </ul>
-    </section>
-
-    <section id="writing" class="card">
-      <h2>My Book and Articles</h2>
-      <ul>
-        <li><a href="https://darelhilal.com/News/1023221.aspx" target="_blank"><i class="fas fa-book"></i> Book Publication – Dar Al Hilal</a></li>
-        <li><a href="https://searchworks.stanford.edu/view/14074488" target="_blank"><i class="fas fa-university"></i> Stanford Library Entry</a></li>
-        <li><a href="https://search.library.yale.edu/catalog/16112778?block=Books" target="_blank"><i class="fas fa-university"></i> Yale Library Entry</a></li>
-        <li><a href="https://alarab2030.com/المواطنة-في-المجتمعات-الأفريقية/" target="_blank"><i class="fas fa-newspaper"></i> Education for Citizenship</a></li>
-        <li><a href="https://alarab2030.com/التعليم-والحراك-الاجتماعي-تحديات-الق/" target="_blank"><i class="fas fa-newspaper"></i> Education & Social Mobility</a></li>
-        <li><a href="https://alarab2030.com/الثقافة-العربية-الدول-الأفريقية/" target="_blank"><i class="fas fa-newspaper"></i> Cultural Supremacy Article</a></li>
-      </ul>
-    </section>
-
-    <section id="contact" class="card">
-      <h2>Contact</h2>
-      <p><i class="fas fa-envelope"></i> Email: <a href="mailto:mahamedadou@hotmail.com">mahamedadou@hotmail.com</a></p>
-      <p><i class="fas fa-phone"></i> Phone: 07534361977</p>
-      <p><i class="fas fa-map-marker-alt"></i> Location: Kensington and Chelsea, London</p>
-      <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/mohamed-ibrahim-mohamed-989539117/" target="_blank">View my profile</a></p>
-      <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/sidicamoli" target="_blank">sidicamoli</a></p>
-    </section>
-
-    <section id="my-photo" class="card">
-      <h2>My Photo</h2>
-      <img src="https://i0.wp.com/alarab2030.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-2.28.27-PM.jpeg?resize=521%2C695&ssl=1" alt="Mohamed Ibrahim Mohamed's Photo">
-    </section>
-
-    <section id="career-goal" class="card">
-      <h2>🎯 Career Goal</h2>
-      <p>To combine my academic background with new technical skills in web development, building digital solutions that support <strong>learning, inclusion, and social transformation</strong>.</p>
-    </section>
-  </main>
-
-  <!-- Arabic Content -->
-  <main id="content-ar" class="hidden" dir="rtl">
-    <section id="about-ar" class="card">
-      <h2>مرحبًا، أنا محمد إبراهيم محمد  "منصور" 😊</h2>
-      <p>أنا <strong>محترف ديناميكي ومتمرس ولدي خمس عشرة سنة من الخبرة في مجال البث الإذاعي والتحرير والترجمة</strong>. بصفتي مرشحا لدرجة الدكتوراه في التربية، اشتهرت بتأليف <strong>أطروحة ماجستير رائدة حظيت بإشادة ونشر من وزارة الثقافة المصرية وعلى منصات مرموقة</strong>. توليت سابقا <strong>رئاسة اتحاد طلاب جيبوتي ورابطة طلاب العفر بالقاهرة</strong>، حيث ساهمت في دعم وتمكين المبادرات الطلابية وتعزيز دورها في المجتمع.</p>
-      <p>أنا متعلم متفاني وأعمل على تطوير مهاراتي في مجال <strong>تطوير الويب من خلال CodeYourFuture،</strong> حيث أعمل مع <strong>HTML و CSS و JavaScript و Git و GitHub.</strong> كما أمارس <strong>البرمجة الثنائية وتصحيح الأخطاء واستخدام لوحات</strong> المشاريع لبناء البرامج وإدارتها بشكل تعاوني.</p>
-      <p>لدي خبرة في مجال <strong>البث الإذاعي والتحرير والترجمة والتعليم والبحث العلمي،</strong> وأؤمن <strong>بالتعلم مدى الحياة</strong > كوسيلة للنمو على الصعيدين الشخصي والمهني.</p>
-    </section>
-
-    <section id="work-experience-ar" class="card">
-      <h2>تاريخ العمل</h2>
-      <div class="job-entry">
-        <h3>أخصائي إذاعة <span class="job-dates">مارس 2009 - فبراير 2024</span></h3>
-        <p class="organization">اتحاد الإذاعة والتلفزيون المصري (ERTU)</p>
-        <ul>
-          <li>ابتكار ورواية قصص إذاعية جذابة عززت بشكل كبير تفاعل المستمعين.</li>
-          <li>قاد عملية الترجمة والتحرير، مما عزز ثراء المحتوى وتنوعه.</li>
-          <li>تدريب وتأهيل أعضاء الفريق الجدد، مما رفع من قدرات القسم وكفاءة سير العمل.</li>
-          <li>إدارة الميزانيات بفعالية، مع الالتزام بالقيود المالية دائمًا وتعظيم تخصيص الموارد لتحقيق أفضل النتائج.</li>
-          <li>بناء وإدارة العلاقات مع العملاء والشركاء الرئيسيين لدفع النمو.</li>
-        </ul>
-      </div>
-      <div class="job-entry">
-        <h3>مدير موارد بشرية <span class="job-dates">سبتمبر 2012 - نوفمبر 2015</span></h3>
-        <p class="organization">أكاديمية أطفالنا</p>
-        <ul>
-          <li>تنظيم استراتيجيات الاتصال الداخلي التي عززت الفعالية التنظيمية.</li>
-          <li>بدء وتوجيه برامج مشاركة الموظفين التي عززت الروح المعنوية والإنتاجية.</li>
-          <li>إجراء تحقيقات داخلية شاملة، ومعالجة مخاوف الموظفين بنزاهة وشفافية.</li>
-          <li>التعاون مع القيادة التنفيذية لمواءمة مبادرات الموارد البشرية مع أهداف العمل العامة.</li>
-          <li>إدارة قضايا علاقات الموظفين باحترافية، وحل النزاعات بكفاءة مع الحفاظ على السرية في جميع الأوقات.</li>
-        </ul>
-      </div>
-      <div class="job-entry">
-        <h3>مدرس لغة عربية <span class="job-dates">يناير 2003 - يونيو 2005</span></h3>
-        <p class="organization">مدرسة أبو بكر الصديق الابتدائية</p>
-        <ul>
-          <li>تطوير بيئة تعليمية مرنة، والتكيف مع أساليب التعلم المتنوعة والاحتياجات التعليمية.</li>
-          <li>تطبيق تقنيات إدارة الفصول الدراسية التي عززت بيئة تعليمية إيجابية وشاملة لجميع الطلاب.</li>
-          <li>تعزيز حب القراءة بين الطلاب من خلال إنشاء عروض كتب جذابة في مكتبة الفصل، واستضافة جلسات نقاش حول الكتب، وتقديم توصيات شخصية بناءً على اهتمامات فردية.</li>
-          <li>بناء علاقات والتواصل مع أولياء الأمور لتوفير أفضل بيئة تعليمية للأطفال.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="education-ar" class="card">
-      <h2>التعليم</h2>
-      <div class="education-entry">
-        <h3>دكتوراه في التربية: السنة التمهيدية <span class="education-dates">مايو 2021</span></h3>
-        <p class="institution">كلية الدراسات العليا للتربية، جامعة القاهرة - القاهرة، مصر</p>
-      </div>
-      <div class="education-entry">
-        <h3>ماجستير في التربية: علم الاجتماع التربوي <span class="education-dates">أبريل 2020</span></h3>
-        <p class="institution">جامعة القاهرة - القاهرة، مصر</p>
-        <p>مؤلف رسالة رائدة حول تعليم المواطنة في المجتمعات الأفريقية، والتي تم نشرها والاعتراف بها من قبل مؤسسات مثل جامعة ستانفورد ومكتبة ييل.</p>
-      </div>
-      <div class="education-entry">
-        <h3>دبلومات خاصة وعامة في التربية</h3>
-        <p class="institution">معهد الدراسات التربوية، جامعة القاهرة - القاهرة، مصر</p>
-      </div>
-      <div class="education-entry">
-        <h3>ليسانس آداب: لغة عربية وآدابها <span class="education-dates">مايو 2010</span></h3>
-        <p class="institution">كلية الآداب، جامعة القاهرة - القاهرة، مصر</p>
-      </div>
-    </section>
-
-    <section id="professional-development-ar" class="card">
-      <h2>التطوير المهني</h2>
-      <div class="pd-category">
-        <h3>💻 التدريب التقني (CodeYourFuture)</h3>
-        <ul>
-          <li>بناء برامج عمل بسيطة باستخدام التذاكر ولوحات المشاريع.</li>
-          <li>البرمجة في جلسات برمجة ثنائية مع الزملاء والموجهين.</li>
-          <li>العمل عن بعد في دورات ذاتية التوجيه، والتعاون أيضًا في بيئات هجينة.</li>
-          <li>تطوير مهارات مثل إدارة الوقت، والاتصال المهني، وحل المشكلات.</li>
-        </ul>
-      </div>
-      <div class="pd-category">
-        <h3>تطوير مهني آخر</h3>
-        <ul>
-          <li><strong>التحليل الاقتصادي:</strong> اكتساب رؤى حول الاقتصاد الدولي، مما يتيح التطبيق في السياقات التعليمية.</li>
-          <li><strong>المهارات الشخصية:</strong> إتقان استراتيجيات الاتصال التي تعزز الثقة بالنفس وبناء الشخصية.</li>
-          <li><strong>الشهادات الفنية:</strong> تحقيق الكفاءة في ICDL وتطبيقات اللغة الإنجليزية المتقدمة.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="skills-ar" class="card">
-      <h2>🛠️ المهارات والمعرفة</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>تطوير الويب</h3>
-          <ul>
-            <li><strong>HTML, CSS, JavaScript</strong> – مهارات تطوير الويب الأساسية.</li>
-            <li><strong>Git & GitHub</strong> – التحكم في الإصدارات والترميز التعاوني.</li>
-            <li><strong>تصحيح الأخطاء ومراجعة الكود</strong> – كتابة وتحسين الكود النظيف والفعال.</li>
-            <li><strong>البرمجة الثنائية</strong> – بناء الحلول من خلال التعاون.</li>
-            <li><strong>كانبان ولوحات المشاريع</strong> – إدارة المهام وسير العمل بفعالية.</li>
-          </ul>
+    <div class="container">
+      <!-- About -->
+      <section id="about" class="section">
+        <h2 class="section-title"><i class="fas fa-user-circle"></i> About</h2>
+        <div class="card">
+          <p>Professional with fifteen years of experience in radio broadcasting, editing, and translation. PhD candidate in education with a master's thesis published by the Egyptian Ministry of Culture and recognized by Stanford and Yale libraries. Former President of the Djibouti Students Union and Afar Students Association in Cairo.</p>
+          
+          <p>Currently developing web development skills through CodeYourFuture, working with HTML, CSS, JavaScript, Git, and GitHub. Experienced in pair programming, debugging, and project board management for collaborative software development.</p>
+          
+          <p>Academic background spans broadcasting, editing, translation, education, and scientific research. Committed to lifelong learning as a foundation for personal and professional growth.</p>
         </div>
-        <div class="skill-category">
-          <h3>مهارات أخرى</h3>
-          <ul>
-            <li>التدريس والإرشاد <div class="skill-level" data-level="5"></div></li>
-            <li>إدارة الموظفين والقيادة <div class="skill-level" data-level="5"></div></li>
-            <li>التواصل الاستراتيجي <div class="skill-level" data-level="4"></div></li>
-            <li>التفكير النقدي والتحليلي <div class="skill-level" data-level="4"></div></li>
-            <li>البحث والتحليل <div class="skill-level" data-level="5"></div></li>
-            <li>تخصيص الموارد <div class="skill-level" data-level="4"></div></li>
-            <li>الاستجابة للطوارئ <div class="skill-level" data-level="3"></div></li>
-          </ul>
+      </section>
+
+      <!-- Work Experience -->
+      <section id="experience" class="section">
+        <h2 class="section-title"><i class="fas fa-briefcase"></i> Work Experience</h2>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content card">
+              <div class="job-header">
+                <div>
+                  <h3>Broadcasting Specialist</h3>
+                  <p class="meta">Egyptian Radio and Television Union (ERTU)</p>
+                </div>
+                <span class="badge">2009 - 2024</span>
+              </div>
+              <ul>
+                <li>Innovated and narrated compelling broadcast narratives that significantly bolstered listener engagement</li>
+                <li>Spearheaded translation and editing processes, enhancing content richness and diversity</li>
+                <li>Mentored new team members, elevating departmental capabilities and workflow efficiency</li>
+                <li>Managed budgets effectively while maximizing resource allocation</li>
+                <li>Built and maintained relationships with key clients and partners</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content card">
+              <div class="job-header">
+                <div>
+                  <h3>Human Resources Manager</h3>
+                  <p class="meta">Atfalna Academy</p>
+                </div>
+                <span class="badge">2012 - 2015</span>
+              </div>
+              <ul>
+                <li>Developed internal communications strategies that optimized organizational effectiveness</li>
+                <li>Initiated employee engagement programs that boosted morale and productivity</li>
+                <li>Conducted internal investigations, addressing employee concerns with fairness and transparency</li>
+                <li>Collaborated with executive leadership to align HR initiatives with business goals</li>
+                <li>Managed employee relations professionally while maintaining confidentiality</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content card">
+              <div class="job-header">
+                <div>
+                  <h3>Arabic Language Teacher</h3>
+                  <p class="meta">Abu Bakr Al-Siddeeq Elementary School</p>
+                </div>
+                <span class="badge">2003 - 2005</span>
+              </div>
+              <ul>
+                <li>Cultivated versatile teaching environment adapting to varied learning styles</li>
+                <li>Implemented classroom management techniques fostering positive, inclusive learning</li>
+                <li>Promoted reading through engaging classroom library and personalized recommendations</li>
+                <li>Built relationships with parents to provide optimal learning environment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section id="education" class="section">
+        <h2 class="section-title"><i class="fas fa-university"></i> Education</h2>
+        
+        <div class="education-grid">
+          <div class="card education-card">
+            <div class="degree-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>Ph.D. in Education</h3>
+            <p class="meta">Preparatory Year - May 2021</p>
+            <p class="institution">Faculty of Graduate Studies for Education<br>Cairo University, Egypt</p>
+          </div>
+
+          <div class="card education-card">
+            <div class="degree-icon"><i class="fas fa-award"></i></div>
+            <h3>Master of Education</h3>
+            <p class="meta">Educational Sociology - April 2020</p>
+            <p class="institution">Cairo University, Egypt</p>
+            <p class="highlight">Pioneering thesis on Citizenship Education in African Societies - Published and recognized by Stanford and Yale libraries</p>
+          </div>
+
+          <div class="card education-card">
+            <div class="degree-icon"><i class="fas fa-certificate"></i></div>
+            <h3>Special & General Diplomas</h3>
+            <p class="meta">Education</p>
+            <p class="institution">Institute of Educational Studies<br>Cairo University, Egypt</p>
+          </div>
+
+          <div class="card education-card">
+            <div class="degree-icon"><i class="fas fa-book"></i></div>
+            <h3>Bachelor of Arts</h3>
+            <p class="meta">Arabic Language Literature - May 2010</p>
+            <p class="institution">Faculty of Arts<br>Cairo University, Egypt</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UK ENIC Qualifications -->
+      <section id="qualifications" class="section">
+        <h2 class="section-title"><i class="fas fa-certificate"></i> UK ENIC Qualification Comparisons</h2>
+        <p class="section-subtitle">Official UK framework equivalency assessments</p>
+        
+        <div class="enic-container">
+          <div class="card enic-card">
+            <div class="enic-header">
+              <div>
+                <h3>Master of Arts in Education</h3>
+                <p class="meta">Cairo University, Egypt • 2020</p>
+                <p class="spec">Educational Sociology - Citizenship Education in African Societies</p>
+              </div>
+              <div class="flag-group">
+                <span class="flag">🇪🇬</span>
+                <span class="arrow">→</span>
+                <span class="flag">🇬🇧</span>
+              </div>
+            </div>
+            <div class="enic-comparison">
+              <div class="comp-item">
+                <i class="fas fa-check-circle"></i>
+                <span>RQF Level 7 / SCQF Level 11 / CQFW Level 7</span>
+              </div>
+              <div class="comp-item">
+                <i class="fas fa-equals"></i>
+                <span><strong>UK Equivalent:</strong> Master's degree</span>
+              </div>
+              <p class="note"><i class="fas fa-info-circle"></i> Assessment based on verified transcript from Cairo University</p>
+            </div>
+          </div>
+
+          <div class="card enic-card">
+            <div class="enic-header">
+              <div>
+                <h3>Special Diploma in Education</h3>
+                <p class="meta">Cairo University, Egypt • 2014</p>
+                <p class="spec">Foundations of Education</p>
+              </div>
+              <div class="flag-group">
+                <span class="flag">🇪🇬</span>
+                <span class="arrow">→</span>
+                <span class="flag">🇬🇧</span>
+              </div>
+            </div>
+            <div class="enic-comparison">
+              <div class="comp-item">
+                <i class="fas fa-check-circle"></i>
+                <span>RQF Level 7 / SCQF Level 11 / CQFW Level 7</span>
+              </div>
+              <div class="comp-item">
+                <i class="fas fa-equals"></i>
+                <span><strong>UK Equivalent:</strong> Postgraduate Diploma</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card enic-card">
+            <div class="enic-header">
+              <div>
+                <h3>General Diploma in Education</h3>
+                <p class="meta">Cairo University, Egypt • 2013</p>
+              </div>
+              <div class="flag-group">
+                <span class="flag">🇪🇬</span>
+                <span class="arrow">→</span>
+                <span class="flag">🇬🇧</span>
+              </div>
+            </div>
+            <div class="enic-comparison">
+              <div class="comp-item">
+                <i class="fas fa-check-circle"></i>
+                <span>RQF Level 7 / SCQF Level 11 / CQFW Level 7</span>
+              </div>
+              <div class="comp-item">
+                <i class="fas fa-equals"></i>
+                <span><strong>UK Equivalent:</strong> Postgraduate Certificate</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card enic-card">
+            <div class="enic-header">
+              <div>
+                <h3>Bachelor of Arts</h3>
+                <p class="meta">Cairo University, Egypt • 2010</p>
+                <p class="spec">Arabic Language and Literature</p>
+              </div>
+              <div class="flag-group">
+                <span class="flag">🇪🇬</span>
+                <span class="arrow">→</span>
+                <span class="flag">🇬🇧</span>
+              </div>
+            </div>
+            <div class="enic-comparison">
+              <div class="comp-item">
+                <i class="fas fa-check-circle"></i>
+                <span>RQF Level 6 / SCQF Level 10 / CQFW Level 6</span>
+              </div>
+              <div class="comp-item">
+                <i class="fas fa-equals"></i>
+                <span><strong>UK Equivalent:</strong> Bachelor degree</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Professional Development -->
+      <section id="development" class="section">
+        <h2 class="section-title"><i class="fas fa-chart-line"></i> Professional Development</h2>
+        
+        <div class="grid-2">
+          <div class="card dev-card">
+            <div class="dev-icon"><i class="fas fa-laptop-code"></i></div>
+            <h3>Technical Training</h3>
+            <p class="meta">CodeYourFuture</p>
+            <ul>
+              <li>Build working software using tickets and project boards</li>
+              <li>Pair programming sessions with peers and mentors</li>
+              <li>Remote work in self-directed sprints and hybrid collaboration</li>
+              <li>Time management, professional communication, problem-solving</li>
+            </ul>
+          </div>
+
+          <div class="card dev-card">
+            <div class="dev-icon"><i class="fas fa-certificate"></i></div>
+            <h3>Additional Certifications</h3>
+            <ul>
+              <li><strong>Economic Analysis:</strong> International economics with educational applications</li>
+              <li><strong>Interpersonal Skills:</strong> Communication strategies for confidence building</li>
+              <li><strong>Technical:</strong> ICDL proficiency and advanced English applications</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="section">
+        <h2 class="section-title"><i class="fas fa-tools"></i> Skills & Expertise</h2>
+        
+        <div class="skills-container">
+          <div class="card skill-card">
+            <h3><i class="fas fa-code"></i> Web Development</h3>
+            <div class="skill-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Debugging</span>
+              <span class="tag">Code Review</span>
+              <span class="tag">Pair Programming</span>
+              <span class="tag">Kanban</span>
+              <span class="tag">Project Boards</span>
+            </div>
+          </div>
+
+          <div class="card skill-card">
+            <h3><i class="fas fa-briefcase"></i> Professional Skills</h3>
+            <div class="skill-tags">
+              <span class="tag">Teaching & Mentoring</span>
+              <span class="tag">Staff Management</span>
+              <span class="tag">Leadership</span>
+              <span class="tag">Strategic Communication</span>
+              <span class="tag">Critical Thinking</span>
+              <span class="tag">Analytical Thinking</span>
+              <span class="tag">Research & Analysis</span>
+              <span class="tag">Resource Allocation</span>
+              <span class="tag">Emergency Response</span>
+            </div>
+          </div>
+
+          <div class="card skill-card">
+            <h3><i class="fas fa-language"></i> Languages</h3>
+            <div class="languages-grid">
+              <div class="lang-item">
+                <span class="lang-name">Afar</span>
+                <span class="lang-level">Native</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">Arabic</span>
+                <span class="lang-level">Native</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">English</span>
+                <span class="lang-level">Professional</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">Somali</span>
+                <span class="lang-level">Professional</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">French</span>
+                <span class="lang-level">Limited</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Publications -->
+      <section id="writing" class="section">
+        <h2 class="section-title"><i class="fas fa-feather-alt"></i> Publications & Research</h2>
+        
+        <div class="publications-grid">
+          <a href="https://darelhilal.com/News/1023221.aspx" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-book"></i></div>
+            <h3>Book Publication</h3>
+            <p class="pub-venue">Dar Al Hilal</p>
+            <span class="pub-link">View Publication <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://searchworks.stanford.edu/view/14074488" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-university"></i></div>
+            <h3>Stanford Library</h3>
+            <p class="pub-venue">Academic Recognition</p>
+            <span class="pub-link">View Entry <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://search.library.yale.edu/catalog/16112778?block=Books" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-university"></i></div>
+            <h3>Yale Library</h3>
+            <p class="pub-venue">Academic Recognition</p>
+            <span class="pub-link">View Entry <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://alarab2030.com/المواطنة-في-المجتمعات-الأفريقية/" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-newspaper"></i></div>
+            <h3>Education for Citizenship</h3>
+            <p class="pub-venue">Research Article</p>
+            <span class="pub-link">Read Article <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://alarab2030.com/التعليم-والحراك-الاجتماعي-تحديات-الق/" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-newspaper"></i></div>
+            <h3>Education & Social Mobility</h3>
+            <p class="pub-venue">Research Article</p>
+            <span class="pub-link">Read Article <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://alarab2030.com/الثقافة-العربية-الدول-الأفريقية/" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-newspaper"></i></div>
+            <h3>Cultural Supremacy</h3>
+            <p class="pub-venue">Research Article</p>
+            <span class="pub-link">Read Article <i class="fas fa-external-link-alt"></i></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section">
+        <h2 class="section-title"><i class="fas fa-envelope"></i> Contact</h2>
+        
+        <div class="contact-grid">
+          <div class="card contact-card">
+            <i class="fas fa-envelope"></i>
+            <h3>Email</h3>
+            <a href="mailto:mahamedadou@hotmail.com">mahamedadou@hotmail.com</a>
+          </div>
+
+          <div class="card contact-card">
+            <i class="fas fa-phone"></i>
+            <h3>Phone</h3>
+            <a href="tel:07534361977">07534361977</a>
+          </div>
+
+          <div class="card contact-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Location</h3>
+            <p>Kensington and Chelsea<br>London, UK</p>
+          </div>
+
+          <div class="card contact-card">
+            <i class="fab fa-linkedin"></i>
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/mohamed-ibrahim-mohamed-989539117/" target="_blank">View Profile</a>
+          </div>
+
+          <div class="card contact-card">
+            <i class="fab fa-github"></i>
+            <h3>GitHub</h3>
+            <a href="https://github.com/sidicamoli" target="_blank">sidicamoli</a>
+          </div>
+        </div>
+
+        <div class="card career-goal">
+          <h3><i class="fas fa-bullseye"></i> Career Goal</h3>
+          <p>To combine academic background with technical skills in web development, building digital solutions that support learning, inclusion, and social transformation.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ARABIC CONTENT - COMPLETE -->
+  <div id="content-ar" class="hidden">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>محمد إبراهيم محمد</h1>
+        <p class="hero-subtitle">مرشح دكتوراه في التربية | باحث | إذاعي | مطور ويب</p>
+        <div class="hero-icons">
+          <span title="البحث والتعليم"><i class="fas fa-graduation-cap"></i></span>
+          <span title="البث الإذاعي"><i class="fas fa-microphone-alt"></i></span>
+          <span title="تطوير الويب"><i class="fas fa-laptop-code"></i></span>
+          <span title="القيادة"><i class="fas fa-users"></i></span>
+          <span title="متعدد اللغات"><i class="fas fa-globe"></i></span>
         </div>
       </div>
     </section>
 
-    <section id="languages-ar" class="card">
-      <h2>اللغات</h2>
-      <ul>
-        <li>العفرية: إتقان اللغة الأم <div class="skill-level" data-level="5"></div></li>
-        <li>العربية: إتقان اللغة الأم أو ثنائي اللغة <div class="skill-level" data-level="5"></div></li>
-        <li>الإنجليزية: إتقان احترافي كامل <div class="skill-level" data-level="4"></div></li>
-        <li>الصومالية: إتقان احترافي كامل <div class="skill-level" data-level="4"></div></li>
-        <li>الفرنسية: إتقان عمل محدود <div class="skill-level" data-level="2"></div></li>
-      </ul>
-    </section>
+    <div class="container">
+      <!-- نبذة -->
+      <section id="about-ar" class="section">
+        <h2 class="section-title"><i class="fas fa-user-circle"></i> نبذة</h2>
+        <div class="card">
+          <p>محترف لدي خمس عشرة سنة من الخبرة في البث الإذاعي والتحرير والترجمة. مرشح دكتوراه في التربية مع أطروحة ماجستير نُشرت من قبل وزارة الثقافة المصرية واعترفت بها مكتبات جامعة ستانفورد وييل. رئيس سابق لاتحاد طلاب جيبوتي ورابطة طلاب العفر بالقاهرة.</p>
+          
+          <p>أقوم حاليًا بتطوير مهارات تطوير الويب من خلال CodeYourFuture، والعمل مع HTML و CSS و JavaScript و Git و GitHub. خبرة في البرمجة الثنائية وتصحيح الأخطاء وإدارة لوحات المشاريع للتطوير التعاوني للبرمجيات.</p>
+          
+          <p>تشمل الخلفية الأكاديمية البث الإذاعي والتحرير والترجمة والتعليم والبحث العلمي. ملتزم بالتعلم مدى الحياة كأساس للنمو الشخصي والمهني.</p>
+        </div>
+      </section>
 
-    <section id="writing-ar" class="card">
-      <h2>كتبي ومقالاتي</h2>
-      <ul>
-        <li><a href="https://darelhilal.com/News/1023221.aspx" target="_blank"><i class="fas fa-book"></i> نشر كتاب – دار الهلال</a></li>
-        <li><a href="https://searchworks.stanford.edu/view/14074488" target="_blank"><i class="fas fa-university"></i> دخول مكتبة ستانفورد</a></li>
-        <li><a href="https://search.library.yale.edu/catalog/16112778?block=Books" target="_blank"><i class="fas fa-university"></i> دخول مكتبة ييل</a></li>
-        <li><a href="https://alarab2030.com/%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B7%D9%86%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D8%A7%D8%AA-%D8%A7%D9%84%D8%A3%D9%81%D8%B1%D9%8A%D9%82%D9%8A%D8%A9/" target="_blank"><i class="fas fa-newspaper"></i> التعليم من أجل المواطنة</a></li>
-        <li><a href="https://alarab2030.com/%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D9%88%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D9%83-%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A-%D8%AA%D8%AD%D8%AF%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%82/" target="_blank"><i class="fas fa-newspaper"></i> التعليم والحراك الاجتماعي</a></li>
-        <li><a href="https://alarab2030.com/%d8%a7%d9%84%d8%ab%d9%82%d8%a7%d9%81%d8%a9-%d8%a7%d9%84%d8%b9%d8%b1%d8%a8%d9%8a%d8%a9-%d8%a7%d9%84%d8%af%d9%88%d9%84-%d8%a7%d9%84%d8%a3%d9%81%d8%b1%d9%8a%d9%82%d9%8a%d8%a9/" target="_blank"><i class="fas fa-newspaper"></i> مقال عن التفوق الثقافي</a></li>
-      </ul>
-    </section>
+      <!-- خبرة العمل -->
+      <section id="experience-ar" class="section">
+        <h2 class="section-title"><i class="fas fa-briefcase"></i> خبرة العمل</h2>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content card">
+              <div class="job-header">
+                <div>
+                  <h3>أخصائي إذاعة</h3>
+                  <p class="meta">اتحاد الإذاعة والتلفزيون المصري</p>
+                </div>
+                <span class="badge">2009 - 2024</span>
+              </div>
+              <ul>
+                <li>ابتكار ورواية قصص إذاعية مقنعة عززت بشكل كبير تفاعل المستمعين</li>
+                <li>قيادة عمليات الترجمة والتحرير، وتعزيز ثراء المحتوى وتنوعه</li>
+                <li>توجيه أعضاء الفريق الجدد، ورفع قدرات القسم وكفاءة سير العمل</li>
+                <li>إدارة الميزانيات بفعالية مع تعظيم تخصيص الموارد</li>
+                <li>بناء والحفاظ على علاقات مع العملاء والشركاء الرئيسيين</li>
+              </ul>
+            </div>
+          </div>
 
-    <section id="contact-ar" class="card">
-      <h2>تواصل معي</h2>
-      <p><i class="fas fa-envelope"></i> البريد الإلكتروني: <a href="mailto:mahamedadou@hotmail.com">mahamedadou@hotmail.com</a></p>
-      <p><i class="fas fa-phone"></i> الهاتف: 07534361977</p>
-      <p><i class="fas fa-map-marker-alt"></i> الموقع: كنسينغتون وتشيلسي، لندن</p>
-      <p><i class="fab fa-linkedin"></i> لينكد إن: <a href="https://www.linkedin.com/in/mohamed-ibrahim-mohamed-989539117/" target="_blank">عرض ملفي الشخصي</a></p>
-      <p><i class="fab fa-github"></i> جيت هاب: <a href="https://github.com/sidicamoli" target="_blank">sidicamoli</a></p>
-    </section>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content card">
+              <div class="job-header">
+                <div>
+                  <h3>مدير موارد بشرية</h3>
+                  <p class="meta">أكاديمية أطفالنا</p>
+                </div>
+                <span class="badge">2012 - 2015</span>
+              </div>
+              <ul>
+                <li>تطوير استراتيجيات الاتصال الداخلي التي حسنت الفعالية التنظيمية</li>
+                <li>بدء برامج مشاركة الموظفين التي عززت المعنويات والإنتاجية</li>
+                <li>إجراء تحقيقات داخلية، ومعالجة مخاوف الموظفين بعدل وشفافية</li>
+                <li>التعاون مع القيادة التنفيذية لمواءمة مبادرات الموارد البشرية مع أهداف العمل</li>
+                <li>إدارة علاقات الموظفين بشكل احترافي مع الحفاظ على السرية</li>
+              </ul>
+            </div>
+          </div>
 
-    <section id="my-photo-ar" class="card">
-      <h2>صورتي</h2>
-      <img src="https://i0.wp.com/alarab2030.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-15-at-2.28.27-PM.jpeg?resize=521%2C695&ssl=1" alt="صورة محمد إبراهيم محمد">
-    </section>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content card">
+              <div class="job-header">
+                <div>
+                  <h3>مدرس لغة عربية</h3>
+                  <p class="meta">مدرسة أبو بكر الصديق الابتدائية</p>
+                </div>
+                <span class="badge">2003 - 2005</span>
+              </div>
+              <ul>
+                <li>تنمية بيئة تعليمية متعددة الاستخدامات تتكيف مع أنماط التعلم المتنوعة</li>
+                <li>تنفيذ تقنيات إدارة الفصول الدراسية لتعزيز التعلم الإيجابي والشامل</li>
+                <li>تعزيز القراءة من خلال مكتبة فصل دراسي جذابة وتوصيات شخصية</li>
+                <li>بناء علاقات مع أولياء الأمور لتوفير بيئة تعليمية مثالية</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section id="career-goal-ar" class="card">
-      <h2>🎯 الهدف المهني</h2>
-      <p>أطمح إلى الجمع بين خلفيتي الأكاديمية ومهاراتي التقنية الجديدة في تطوير الويب، لبناء حلول رقمية تدعم <strong>التعلم، والاندماج، والتحول الاجتماعي</strong>.</p>
-    </section>
-  </main>
+      <!-- التعليم -->
+      <section id="education-ar" class="section">
+        <h2 class="section-title"><i class="fas fa-university"></i> التعليم</h2>
+        
+        <div class="education-grid">
+          <div class="card education-card">
+            <div class="degree-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>دكتوراه في التربية</h3>
+            <p class="meta">السنة التمهيدية - مايو 2021</p>
+            <p class="institution">كلية الدراسات العليا للتربية<br>جامعة القاهرة، مصر</p>
+          </div>
 
-  <footer class="c-site-footer">
-    <p>&copy; 2025 Mohamed Ibrahim Mohamed</p>
+          <div class="card education-card">
+            <div class="degree-icon"><i class="fas fa-award"></i></div>
+            <h3>ماجستير في التربية</h3>
+            <p class="meta">علم الاجتماع التربوي - أبريل 2020</p>
+            <p class="institution">جامعة القاهرة، مصر</p>
+            <p class="highlight">أطروحة رائدة حول تعليم المواطنة في المجتمعات الأفريقية - نُشرت واعترفت بها مكتبات ستانفورد وييل</p>
+          </div>
+
+          <div class="card education-card">
+            <div class="degree-icon"><i class="fas fa-certificate"></i></div>
+            <h3>دبلومات خاصة وعامة</h3>
+            <p class="meta">التربية</p>
+            <p class="institution">معهد الدراسات التربوية<br>جامعة القاهرة، مصر</p>
+          </div>
+
+          <div class="card education-card">
+            <div class="degree-icon"><i class="fas fa-book"></i></div>
+            <h3>ليسانس آداب</h3>
+            <p class="meta">اللغة العربية وآدابها - مايو 2010</p>
+            <p class="institution">كلية الآداب<br>جامعة القاهرة، مصر</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- المؤهلات ومقارنات UK ENIC -->
+      <section id="qualifications-ar" class="section">
+        <h2 class="section-title"><i class="fas fa-certificate"></i> مقارنات مؤهلات UK ENIC</h2>
+        <p class="section-subtitle">تقييمات التكافؤ الرسمية للإطار البريطاني</p>
+        
+        <div class="enic-container">
+          <div class="card enic-card">
+            <div class="enic-header">
+              <div>
+                <h3>ماجستير في التربية</h3>
+                <p class="meta">جامعة القاهرة، مصر • 2020</p>
+                <p class="spec">علم الاجتماع التربوي - تعليم المواطنة في المجتمعات الأفريقية</p>
+              </div>
+              <div class="flag-group">
+                <span class="flag">🇪🇬</span>
+                <span class="arrow">←</span>
+                <span class="flag">🇬🇧</span>
+              </div>
+            </div>
+            <div class="enic-comparison">
+              <div class="comp-item">
+                <i class="fas fa-check-circle"></i>
+                <span>RQF المستوى 7 / SCQF المستوى 11 / CQFW المستوى 7</span>
+              </div>
+              <div class="comp-item">
+                <i class="fas fa-equals"></i>
+                <span><strong>المعادل البريطاني:</strong> درجة الماجستير</span>
+              </div>
+              <p class="note"><i class="fas fa-info-circle"></i> التقييم على أساس نسخة موثقة من جامعة القاهرة</p>
+            </div>
+          </div>
+
+          <div class="card enic-card">
+            <div class="enic-header">
+              <div>
+                <h3>دبلوم خاص في التربية</h3>
+                <p class="meta">جامعة القاهرة، مصر • 2014</p>
+                <p class="spec">أسس التربية</p>
+              </div>
+              <div class="flag-group">
+                <span class="flag">🇪🇬</span>
+                <span class="arrow">←</span>
+                <span class="flag">🇬🇧</span>
+              </div>
+            </div>
+            <div class="enic-comparison">
+              <div class="comp-item">
+                <i class="fas fa-check-circle"></i>
+                <span>RQF المستوى 7 / SCQF المستوى 11 / CQFW المستوى 7</span>
+              </div>
+              <div class="comp-item">
+                <i class="fas fa-equals"></i>
+                <span><strong>المعادل البريطاني:</strong> دبلوم الدراسات العليا</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card enic-card">
+            <div class="enic-header">
+              <div>
+                <h3>دبلوم عام في التربية</h3>
+                <p class="meta">جامعة القاهرة، مصر • 2013</p>
+              </div>
+              <div class="flag-group">
+                <span class="flag">🇪🇬</span>
+                <span class="arrow">←</span>
+                <span class="flag">🇬🇧</span>
+              </div>
+            </div>
+            <div class="enic-comparison">
+              <div class="comp-item">
+                <i class="fas fa-check-circle"></i>
+                <span>RQF المستوى 7 / SCQF المستوى 11 / CQFW المستوى 7</span>
+              </div>
+              <div class="comp-item">
+                <i class="fas fa-equals"></i>
+                <span><strong>المعادل البريطاني:</strong> شهادة الدراسات العليا</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card enic-card">
+            <div class="enic-header">
+              <div>
+                <h3>ليسانس آداب</h3>
+                <p class="meta">جامعة القاهرة، مصر • 2010</p>
+                <p class="spec">اللغة العربية وآدابها</p>
+              </div>
+              <div class="flag-group">
+                <span class="flag">🇪🇬</span>
+                <span class="arrow">←</span>
+                <span class="flag">🇬🇧</span>
+              </div>
+            </div>
+            <div class="enic-comparison">
+              <div class="comp-item">
+                <i class="fas fa-check-circle"></i>
+                <span>RQF المستوى 6 / SCQF المستوى 10 / CQFW المستوى 6</span>
+              </div>
+              <div class="comp-item">
+                <i class="fas fa-equals"></i>
+                <span><strong>المعادل البريطاني:</strong> درجة البكالوريوس</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- التطوير المهني -->
+      <section id="development-ar" class="section">
+        <h2 class="section-title"><i class="fas fa-chart-line"></i> التطوير المهني</h2>
+        
+        <div class="grid-2">
+          <div class="card dev-card">
+            <div class="dev-icon"><i class="fas fa-laptop-code"></i></div>
+            <h3>التدريب التقني</h3>
+            <p class="meta">CodeYourFuture</p>
+            <ul>
+              <li>بناء برامج عمل باستخدام التذاكر ولوحات المشاريع</li>
+              <li>جلسات البرمجة الثنائية مع الأقران والموجهين</li>
+              <li>العمل عن بُعد في دورات ذاتية التوجيه والتعاون الهجين</li>
+              <li>إدارة الوقت، الاتصال المهني، حل المشكلات</li>
+            </ul>
+          </div>
+
+          <div class="card dev-card">
+            <div class="dev-icon"><i class="fas fa-certificate"></i></div>
+            <h3>شهادات إضافية</h3>
+            <ul>
+              <li><strong>التحليل الاقتصادي:</strong> الاقتصاد الدولي مع التطبيقات التعليمية</li>
+              <li><strong>المهارات الشخصية:</strong> استراتيجيات التواصل لبناء الثقة</li>
+              <li><strong>التقنية:</strong> كفاءة ICDL وتطبيقات اللغة الإنجليزية المتقدمة</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- المهارات -->
+      <section id="skills-ar" class="section">
+        <h2 class="section-title"><i class="fas fa-tools"></i> المهارات والخبرة</h2>
+        
+        <div class="skills-container">
+          <div class="card skill-card">
+            <h3><i class="fas fa-code"></i> تطوير الويب</h3>
+            <div class="skill-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">تصحيح الأخطاء</span>
+              <span class="tag">مراجعة الكود</span>
+              <span class="tag">البرمجة الثنائية</span>
+              <span class="tag">Kanban</span>
+              <span class="tag">لوحات المشاريع</span>
+            </div>
+          </div>
+
+          <div class="card skill-card">
+            <h3><i class="fas fa-briefcase"></i> المهارات المهنية</h3>
+            <div class="skill-tags">
+              <span class="tag">التدريس والإرشاد</span>
+              <span class="tag">إدارة الموظفين</span>
+              <span class="tag">القيادة</span>
+              <span class="tag">التواصل الاستراتيجي</span>
+              <span class="tag">التفكير النقدي</span>
+              <span class="tag">التفكير التحليلي</span>
+              <span class="tag">البحث والتحليل</span>
+              <span class="tag">تخصيص الموارد</span>
+              <span class="tag">الاستجابة للطوارئ</span>
+            </div>
+          </div>
+
+          <div class="card skill-card">
+            <h3><i class="fas fa-language"></i> اللغات</h3>
+            <div class="languages-grid">
+              <div class="lang-item">
+                <span class="lang-name">العفرية</span>
+                <span class="lang-level">لغة أم</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">العربية</span>
+                <span class="lang-level">لغة أم</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">الإنجليزية</span>
+                <span class="lang-level">احترافي</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">الصومالية</span>
+                <span class="lang-level">احترافي</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">الفرنسية</span>
+                <span class="lang-level">محدود</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- المنشورات -->
+      <section id="writing-ar" class="section">
+        <h2 class="section-title"><i class="fas fa-feather-alt"></i> المنشورات والبحوث</h2>
+        
+        <div class="publications-grid">
+          <a href="https://darelhilal.com/News/1023221.aspx" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-book"></i></div>
+            <h3>نشر كتاب</h3>
+            <p class="pub-venue">دار الهلال</p>
+            <span class="pub-link">عرض المنشور <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://searchworks.stanford.edu/view/14074488" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-university"></i></div>
+            <h3>مكتبة ستانفورد</h3>
+            <p class="pub-venue">اعتراف أكاديمي</p>
+            <span class="pub-link">عرض الإدخال <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://search.library.yale.edu/catalog/16112778?block=Books" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-university"></i></div>
+            <h3>مكتبة ييل</h3>
+            <p class="pub-venue">اعتراف أكاديمي</p>
+            <span class="pub-link">عرض الإدخال <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://alarab2030.com/المواطنة-في-المجتمعات-الأفريقية/" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-newspaper"></i></div>
+            <h3>التعليم من أجل المواطنة</h3>
+            <p class="pub-venue">مقالة بحثية</p>
+            <span class="pub-link">قراءة المقال <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://alarab2030.com/التعليم-والحراك-الاجتماعي-تحديات-الق/" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-newspaper"></i></div>
+            <h3>التعليم والحراك الاجتماعي</h3>
+            <p class="pub-venue">مقالة بحثية</p>
+            <span class="pub-link">قراءة المقال <i class="fas fa-external-link-alt"></i></span>
+          </a>
+
+          <a href="https://alarab2030.com/الثقافة-العربية-الدول-الأفريقية/" target="_blank" class="pub-card card">
+            <div class="pub-icon"><i class="fas fa-newspaper"></i></div>
+            <h3>التفوق الثقافي</h3>
+            <p class="pub-venue">مقالة بحثية</p>
+            <span class="pub-link">قراءة المقال <i class="fas fa-external-link-alt"></i></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- التواصل -->
+      <section id="contact-ar" class="section">
+        <h2 class="section-title"><i class="fas fa-envelope"></i> التواصل</h2>
+        
+        <div class="contact-grid">
+          <div class="card contact-card">
+            <i class="fas fa-envelope"></i>
+            <h3>البريد الإلكتروني</h3>
+            <a href="mailto:mahamedadou@hotmail.com">mahamedadou@hotmail.com</a>
+          </div>
+
+          <div class="card contact-card">
+            <i class="fas fa-phone"></i>
+            <h3>الهاتف</h3>
+            <a href="tel:07534361977">07534361977</a>
+          </div>
+
+          <div class="card contact-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>الموقع</h3>
+            <p>كنسينغتون وتشيلسي<br>لندن، المملكة المتحدة</p>
+          </div>
+
+          <div class="card contact-card">
+            <i class="fab fa-linkedin"></i>
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/mohamed-ibrahim-mohamed-989539117/" target="_blank">عرض الملف الشخصي</a>
+          </div>
+
+          <div class="card contact-card">
+            <i class="fab fa-github"></i>
+            <h3>GitHub</h3>
+            <a href="https://github.com/sidicamoli" target="_blank">sidicamoli</a>
+          </div>
+        </div>
+
+        <div class="card career-goal">
+          <h3><i class="fas fa-bullseye"></i> الهدف المهني</h3>
+          <p>الجمع بين الخلفية الأكاديمية والمهارات التقنية في تطوير الويب، لبناء حلول رقمية تدعم التعلم والاندماج والتحول الاجتماعي.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Mohamed Ibrahim Mohamed. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
