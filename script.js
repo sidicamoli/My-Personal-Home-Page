@@ -1,414 +1,184 @@
-// ==========================================
-// PROFESSIONAL PORTFOLIO JAVASCRIPT
-// ==========================================
+/* ================================================
+   Mohamed Ibrahim Mohamed · Portfolio
+   Language engine: data-en / data-ar attributes
+   ================================================ */
+'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize all features
-  initializeTheme();
-  initializeLanguage();
-  setupScrollAnimations();
-  setupNavigationHighlight();
-  setupSmoothScroll();
-  setupScrollEffects();
+// ── STATE ──────────────────────────────────────
+let lang   = localStorage.getItem('mim-lang') || 'en';
+let isOpen = false;
+
+// ── BOOT ───────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang(lang);
+  initBar();
+  initReveal();
+  initSpine();
+  initBars();
+  initScroll();
 });
 
-// ==========================================
-// THEME MANAGEMENT
-// ==========================================
+// ── LANGUAGE ENGINE ────────────────────────────
+/*
+  Strategy: every translatable node carries data-en and data-ar.
+  applyLang() walks all [data-en] elements and writes the correct
+  attribute value into innerHTML (supports embedded HTML like <em>).
+  The HTML element gets lang= and dir= for font/RTL switching via CSS.
+  No visibility hacks. No !important wars. Pure JS text swap.
+*/
+window.setLang = function(l) {
+  if (l === lang) return;
+  lang = l;
+  localStorage.setItem('mim-lang', l);
+  applyLang(l);
+  if (isOpen) closeNav();
+};
 
-function toggleTheme() {
-  const body = document.body;
-  const isDarkMode = body.classList.toggle('dark-mode');
-  
-  // Update button icon
-  const themeBtn = document.querySelector('.theme-btn i');
-  if (themeBtn) {
-    themeBtn.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
-  }
-  
-  // Save to localStorage
-  localStorage.setItem('darkMode', isDarkMode);
-}
+function applyLang(l) {
+  // 1. Switch HTML direction & lang (drives all CSS RTL rules)
+  document.documentElement.lang = l;
+  document.documentElement.dir  = l === 'ar' ? 'rtl' : 'ltr';
 
-function initializeTheme() {
-  // Check saved preference
-  const savedTheme = localStorage.getItem('darkMode');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  // Apply theme
-  if (savedTheme === 'true' || (savedTheme === null && prefersDark)) {
-    document.body.classList.add('dark-mode');
-    const themeBtn = document.querySelector('.theme-btn i');
-    if (themeBtn) {
-      themeBtn.className = 'fas fa-sun';
-    }
-  }
-}
+  // 2. Page title
+  document.title = l === 'ar'
+    ? 'محمد إبراهيم محمد — باحث · إذاعي · مربٍّ'
+    : 'Mohamed Ibrahim Mohamed — Researcher · Broadcaster · Educator';
 
-// ==========================================
-// LANGUAGE SWITCHER
-// ==========================================
-
-function switchLang(lang) {
-  const contentEn = document.getElementById('content-en');
-  const contentAr = document.getElementById('content-ar');
-  const html = document.documentElement;
-  
-  if (lang === 'ar') {
-    // Show Arabic content
-    if (contentEn) contentEn.classList.add('hidden');
-    if (contentAr) contentAr.classList.remove('hidden');
-    html.setAttribute('dir', 'rtl');
-    html.setAttribute('lang', 'ar');
-  } else {
-    // Show English content
-    if (contentEn) contentEn.classList.remove('hidden');
-    if (contentAr) contentAr.classList.add('hidden');
-    html.setAttribute('dir', 'ltr');
-    html.setAttribute('lang', 'en');
-  }
-  
-  // Save preference
-  localStorage.setItem('language', lang);
-  
-  // Re-initialize scroll animations for newly visible content
-  setTimeout(setupScrollAnimations, 100);
-}
-
-function initializeLanguage() {
-  const savedLang = localStorage.getItem('language') || 'en';
-  switchLang(savedLang);
-}
-
-// ==========================================
-// SCROLL ANIMATIONS
-// ==========================================
-
-function setupScrollAnimations() {
-  const sections = document.querySelectorAll('.section');
-  
-  // Clear previous observers
-  if (window.sectionObserver) {
-    sections.forEach(section => window.sectionObserver.unobserve(section));
-  }
-  
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  window.sectionObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  sections.forEach(section => {
-    window.sectionObserver.observe(section);
+  // 3. Swap all translatable elements
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = el.getAttribute('data-' + l);
+    if (text !== null) el.innerHTML = text;
   });
-}
 
-// ==========================================
-// NAVIGATION HIGHLIGHT
-// ==========================================
-
-function setupNavigationHighlight() {
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('.section');
-  
-  if (sections.length === 0) return;
-  
-  const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '-20% 0px -70% 0px'
-  };
-  
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        
-        // Remove active class from all links
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-        });
-        
-        // Add active class to current link
-        const cleanId = id.replace('-ar', '');
-        const activeLink = document.querySelector(`.nav-link[href="#${cleanId}"]`);
-        if (activeLink) {
-          activeLink.classList.add('active');
-        }
-      }
-    });
-  }, observerOptions);
-  
-  sections.forEach(section => {
-    observer.observe(section);
+  // 4. Spine dot labels (data-label attribute used by CSS ::after)
+  document.querySelectorAll('.sdot').forEach(dot => {
+    const label = dot.getAttribute('data-' + l);
+    if (label) dot.setAttribute('data-label', label);
   });
+
+  // 5. Active lang buttons
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-ar').classList.toggle('active', l === 'ar');
+
+  // 6. Re-trigger skill bars in case layout changed
+  setTimeout(retriggerBars, 200);
 }
 
-// ==========================================
-// SMOOTH SCROLL
-// ==========================================
+// ── TOPBAR ─────────────────────────────────────
+function initBar() {
+  const bar = document.getElementById('bar');
+  window.addEventListener('scroll', () => {
+    bar.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+}
 
-// Wait for DOM to load
-document.addEventListener('DOMContentLoaded', function() {
-  
-  // Initialize theme from saved preference
-  initializeTheme();
-  
-  // Initialize language from saved preference
-  initializeLanguage();
-  
-  // Setup scroll animations
-  setupScrollAnimations();
-  
-  // Setup navigation highlighting
-  setupNavigationHighlight();
-  
-  // Animate skill bars when visible
-  animateSkillBars();
-  
-  // Smooth scroll for navigation links
-  setupSmoothScroll();
+window.toggleNav = function() { isOpen ? closeNav() : openNav(); };
+window.closeNav  = function() {
+  isOpen = false;
+  document.getElementById('drop').classList.remove('open');
+  document.getElementById('ham').setAttribute('aria-expanded','false');
+};
+function openNav() {
+  isOpen = true;
+  document.getElementById('drop').classList.add('open');
+  document.getElementById('ham').setAttribute('aria-expanded','true');
+}
+document.addEventListener('click', e => {
+  if (!isOpen) return;
+  if (!document.getElementById('bar').contains(e.target)) closeNav();
 });
 
-// Theme Toggle Function
-function toggleTheme() {
-  const body = document.body;
-  const isDarkMode = body.classList.toggle('dark-mode');
-  
-  // Update theme button icon
-  const themeBtn = document.querySelector('.theme-btn i');
-  if (isDarkMode) {
-    themeBtn.className = 'fas fa-sun';
-  } else {
-    themeBtn.className = 'fas fa-moon';
-  }
-  
-  // Save preference
-  localStorage.setItem('darkMode', isDarkMode);
+// ── REVEAL ON SCROLL ───────────────────────────
+function initReveal() {
+  const els = document.querySelectorAll('.rv');
+  if (!els.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  els.forEach(el => io.observe(el));
 }
 
-// Initialize Theme
-function initializeTheme() {
-  const savedTheme = localStorage.getItem('darkMode');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  if (savedTheme === 'true' || (savedTheme === null && prefersDark)) {
-    document.body.classList.add('dark-mode');
-    const themeBtn = document.querySelector('.theme-btn i');
-    if (themeBtn) {
-      themeBtn.className = 'fas fa-sun';
+// ── SPINE NAVIGATION ───────────────────────────
+function initSpine() {
+  const dots = document.querySelectorAll('.sdot');
+  const ids  = ['hero','journey','research','experience','education','skills','contact'];
+  const secs = ids.map(id => document.getElementById(id)).filter(Boolean);
+
+  // set initial labels from current lang
+  dots.forEach(dot => {
+    const lbl = dot.getAttribute('data-' + lang);
+    if (lbl) dot.setAttribute('data-label', lbl);
+  });
+
+  // click → scroll
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const sec = document.getElementById(dot.dataset.sec);
+      if (sec) smoothTo(sec);
+    });
+  });
+
+  // active dot on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        dots.forEach(d => d.classList.toggle('active', d.dataset.sec === id));
+      }
+    });
+  }, { threshold: 0.35 });
+  secs.forEach(s => io.observe(s));
+}
+
+// ── SKILL BARS ─────────────────────────────────
+function initBars() {
+  const fills = document.querySelectorAll('.sbar-fill');
+  if (!fills.length) return;
+  fills.forEach(f => { f.style.width = '0'; });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = (e.target.dataset.w || '0') + '%';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  fills.forEach(f => io.observe(f));
+}
+
+function retriggerBars() {
+  document.querySelectorAll('.sbar-fill').forEach(f => {
+    const rect = f.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      f.style.width = (f.dataset.w || '0') + '%';
     }
-  }
-}
-
-// Language Switcher
-function switchLang(lang) {
-  const contentEn = document.getElementById('content-en');
-  const contentAr = document.getElementById('content-ar');
-  const navEn = document.getElementById('nav-en');
-  const navAr = document.getElementById('nav-ar');
-  const html = document.documentElement;
-  
-  if (lang === 'ar') {
-    contentEn.classList.add('hidden');
-    contentAr.classList.remove('hidden');
-    navEn.classList.add('hidden');
-    navAr.classList.remove('hidden');
-    html.setAttribute('dir', 'rtl');
-    html.setAttribute('lang', 'ar');
-  } else {
-    contentEn.classList.remove('hidden');
-    contentAr.classList.add('hidden');
-    navEn.classList.remove('hidden');
-    navAr.classList.add('hidden');
-    html.setAttribute('dir', 'ltr');
-    html.setAttribute('lang', 'en');
-  }
-  
-  // Save preference
-  localStorage.setItem('language', lang);
-  
-  // Re-initialize navigation highlighting for new language
-  setupNavigationHighlight();
-}
-
-// Initialize Language
-function initializeLanguage() {
-  const savedLang = localStorage.getItem('language') || 'en';
-  switchLang(savedLang);
-}
-
-// Setup Scroll Animations
-function setupScrollAnimations() {
-  const sections = document.querySelectorAll('.section');
-  
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-  
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  sections.forEach(section => {
-    observer.observe(section);
   });
 }
 
-// Setup Navigation Highlight
-function setupNavigationHighlight() {
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('.section');
-  
-  const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '-20% 0px -70% 0px'
-  };
-  
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        
-        // Remove active class from all links
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-        });
-        
-        // Add active class to current link
-        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
-        if (activeLink) {
-          activeLink.classList.add('active');
-        }
-      }
-    });
-  }, observerOptions);
-  
-  sections.forEach(section => {
-    observer.observe(section);
+// ── SMOOTH SCROLL ──────────────────────────────
+function initScroll() {
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    smoothTo(target);
+    if (isOpen) closeNav();
   });
 }
 
-// Animate Skill Bars
-function animateSkillBars() {
-  const skillFills = document.querySelectorAll('.skill-fill');
-  
-  const observerOptions = {
-    threshold: 0.5
-  };
-  
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fill = entry.target;
-        const width = fill.getAttribute('data-width');
-        
-        // Animate width
-        setTimeout(() => {
-          fill.style.width = width + '%';
-        }, 100);
-        
-        // Stop observing after animation
-        observer.unobserve(fill);
-      }
-    });
-  }, observerOptions);
-  
-  skillFills.forEach(fill => {
-    observer.observe(fill);
-  });
+function smoothTo(el) {
+  const barH = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue('--bar-h'), 10
+  ) || 62;
+  const top = el.getBoundingClientRect().top + window.scrollY - barH;
+  window.scrollTo({ top, behavior: 'smooth' });
 }
-
-// Setup Smooth Scroll
-function setupSmoothScroll() {
-  const navLinks = document.querySelectorAll('.nav a');
-  
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      
-      if (targetSection) {
-        const headerOffset = 100;
-        const elementPosition = targetSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-}
-
-// Add scroll-to-top functionality (optional)
-window.addEventListener('scroll', function() {
-  const header = document.querySelector('.header');
-  
-  if (window.scrollY > 100) {
-    header.style.boxShadow = '0 4px 12px var(--shadow)';
-  } else {
-    header.style.boxShadow = '0 1px 3px var(--shadow)';
-  }
-});
-// ==========================================
-// SCROLL EFFECTS
-// ==========================================
-
-function setupScrollEffects() {
-  let lastScroll = 0;
-  const header = document.querySelector('.header');
-  
-  window.addEventListener('scroll', function() {
-    const currentScroll = window.pageYOffset;
-    
-    // Add shadow on scroll
-    if (currentScroll > 50) {
-      header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-    } else {
-      header.style.boxShadow = 'none';
-    }
-    
-    lastScroll = currentScroll;
-  });
-}
-
-// ==========================================
-// UTILITY FUNCTIONS
-// ==========================================
-
-// Debounce function for performance
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-// Add resize listener with debounce
-window.addEventListener('resize', debounce(function() {
-  setupScrollAnimations();
-}, 250));
-
-// Expose functions to global scope for onclick handlers
-window.toggleTheme = toggleTheme;
-window.switchLang = switchLang;
