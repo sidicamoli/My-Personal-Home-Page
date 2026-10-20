@@ -106,7 +106,7 @@ function initReveal() {
 // ── SPINE NAVIGATION ───────────────────────────
 function initSpine() {
   const dots = document.querySelectorAll('.sdot');
-  const ids  = ['hero','journey','research','experience','education','skills','contact'];
+  const ids  = ['hero','journey','research','experience','volunteering','education','skills','contact'];
   const secs = ids.map(id => document.getElementById(id)).filter(Boolean);
 
   // set initial labels from current lang
