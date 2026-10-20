@@ -739,6 +739,16 @@ html[lang="ar"] .hero-name{letter-spacing:0;font-weight:400;}
   color:var(--gold);font-size:.7rem;line-height:1.6;
 }
 
+/* ── VOLUNTEERING ────────────────────────────── */
+/* Reuses the Experience card system; only the differences live here. */
+.vol-sec{padding:7rem 0;background:var(--parch);}
+.exp-grid.vol-grid{grid-template-columns:repeat(2,1fr);}
+.vol-card{background:var(--white);}
+.vol-desc{
+  font-size:.81rem;color:var(--slate);
+  line-height:1.7;
+}
+
 /* ── EDUCATION ───────────────────────────────── */
 .edu-sec{
   padding:7rem 0;background:var(--parch);
@@ -947,6 +957,9 @@ html[lang="ar"] .hero-name{letter-spacing:0;font-weight:400;}
 /* ── RESPONSIVE ──────────────────────────────── */
 @media(max-width:1100px){.spine{display:none;}}
 
+/* Seven nav links: tighten spacing just before the hamburger takes over */
+@media(max-width:1060px){.bar-nav{gap:1.1rem;}}
+
 @media(max-width:900px){
   .bar-nav{display:none;}
   .ham{display:flex;}
@@ -954,6 +967,7 @@ html[lang="ar"] .hero-name{letter-spacing:0;font-weight:400;}
   .about-layout{grid-template-columns:1fr;gap:2.5rem;}
   .pub-grid{grid-template-columns:1fr;}
   .exp-grid{grid-template-columns:1fr;}
+  .exp-grid.vol-grid{grid-template-columns:1fr;}
   .edu-grid{grid-template-columns:1fr;}
   .skills-layout{grid-template-columns:1fr;gap:3rem;}
   .dev-grid{grid-template-columns:1fr;}
@@ -987,7 +1001,7 @@ html[lang="ar"] .hero-name{letter-spacing:0;font-weight:400;}
   .hero-pillars{gap:1rem 1.5rem;}
   .stats-row{gap:1.25rem;}
   .contact-grid{grid-template-columns:1fr;}
-  .about-sec,.journey-sec,.research-sec,.exp-sec,
+  .about-sec,.journey-sec,.research-sec,.exp-sec,.vol-sec,
   .edu-sec,.skills-sec,.contact-sec{padding:4.5rem 0;}
   .sec-head{margin-bottom:2.5rem;}
 }
